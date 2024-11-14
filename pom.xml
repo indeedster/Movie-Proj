@@ -1,0 +1,23 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+
+//slashes are spots where I am unsure what we should have, whether it'<scm>
+//the same as class pom.xml file, or we need to find a specific one for our proj
+</scm>
+    <groupID> // </groupID>
+    <artifactID>Movie-Proj</artifactID>
+    <version>0.0.1</version>
+
+
+    <properties>
+        <maven.compiler.source> // </maven.compiler.source>
+        <maven.compiler.target> // </maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupID> // </groupID>
+            <artifactId> // <artifactID>
+            <version> // </version>
+        </dependency> 
+    </dependencies>
