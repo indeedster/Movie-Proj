@@ -1,8 +1,8 @@
-package main.java.com.movieProj.database;
+package com.movieProj.menu;
 
 import org.bson.Document;
-import com.movieapp.database.Database;
-import com.movieapp.movie.Movie;
+import com.movieProj.database.Database;
+import com.movieProj.movie.Movie;
 
 import java.util.Scanner;
 import java.io.BufferedReader;
@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Menu {
 
     public void startUp() {
-        Database movieDatabase = new Database("movie_app_database", "movie_data");
+        Database movieDatabase = new Database("movieProj", "movieInfo");
         movieDatabase.createCollection();
 
         String csvFile = "src/main/resources/moviesFile.csv";
@@ -41,7 +41,7 @@ public class Menu {
     }
 
     public void shutDown() {
-        Database movieDatabase = new Database("movie_app_database", "movie_data");
+        Database movieDatabase = new Database("movieProj", "movieInfo");
         movieDatabase.deleteCollection();
     }
 
@@ -55,7 +55,7 @@ public class Menu {
             Float movieRating = Float.parseFloat(scanner.nextLine());
 
             Movie userMovie = new Movie(movieName, movieOverview, movieRating);
-            Database movieDatabase = new Database("movie_app_database", "movie_data");
+            Database movieDatabase = new Database("movieProj", "movieInfo");
             movieDatabase.addToDatabase(userMovie.getDocument());
             System.out.println("Movie added successfully!");
         } catch (Exception e) {
@@ -68,7 +68,7 @@ public class Menu {
             System.out.println("Enter the name of the movie to search:");
             String movieName = scanner.nextLine();
 
-            Database movieDatabase = new Database("movie_app_database", "movie_data");
+            Database movieDatabase = new Database("movieProj", "movieInfo");
             Document movie = movieDatabase.findDocument("title", movieName);
 
             if (movie != null) {
