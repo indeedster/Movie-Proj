@@ -25,11 +25,11 @@ public class Menu {
             while ((line = br.readLine()) != null) {
                 try {
                     String[] movieData = line.split(delimiter);
-                    String originalTitle = movieData[1];
-                    String overview = movieData[0];
-                    Float rating = Float.parseFloat(movieData[movieData.length - 2]);
+                    String movieTitle = movieData[0];
+                    String moviePlot = movieData[1];
+                    
 
-                    Movie movieObject = new Movie(originalTitle, overview, rating);
+                    Movie movieObject = new Movie(movieTitle, moviePlot, movieGenre, movieReleaseYear);
                     movieDatabase.addToDatabase(movieObject.getDocument());
                 } catch (Exception e) {
                     System.err.println("Error parsing line: " + line);
@@ -48,13 +48,13 @@ public class Menu {
     public void addMovieToDatabase() {
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.println("Enter the name of the movie:");
-            String movieName = scanner.nextLine();
+            String movieTitle = scanner.nextLine();
             System.out.println("Enter the movie overview:");
-            String movieOverview = scanner.nextLine();
+            String moviePlot = scanner.nextLine();
             System.out.println("Enter the overall rating of the movie (out of 10):");
-            Float movieRating = Float.parseFloat(scanner.nextLine());
+            Float movieReleaseYear = Integer.parseInt(scanner.nextLine());
 
-            Movie userMovie = new Movie(movieName, movieOverview, movieRating);
+            Movie userMovie = new Movie(movieTitle, moviePlot, movieReleaseYear);
             Database movieDatabase = new Database("movieProj", "movieInfo");
             movieDatabase.addToDatabase(userMovie.getDocument());
             System.out.println("Movie added successfully!");
@@ -69,7 +69,7 @@ public class Menu {
             String movieName = scanner.nextLine();
 
             Database movieDatabase = new Database("movieProj", "movieInfo");
-            Document movie = movieDatabase.findDocument("title", movieName);
+            Document movie = movieDatabase.findDocument("title", movieTitle);
 
             if (movie != null) {
                 System.out.println("Movie found: " + movie.toJson());

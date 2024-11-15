@@ -12,7 +12,6 @@ public class Database {
     private String connectionString, databaseName, collectionName;
 
     public Database(String dbName, String collectionName) {
-        // Write your own connection string here!
         this.connectionString = "mongodb+srv://margaretkastelein:frogEggs.12@cos225.3zv2x.mongodb.net/?retryWrites=true&w=majority&appName=COS225";
         this.databaseName = dbName;
         this.collectionName = collectionName;

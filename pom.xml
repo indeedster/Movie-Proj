@@ -1,16 +1,14 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupID> // </groupID>
-    <artifactID>Movie-Proj</artifactID>
+    <groupId>org.COS225</groupId> 
+    <artifactId>Movie-Proj</artifactId> 
     <version>0.0.1</version>
-
 
     <properties>
         <maven.compiler.source>22</maven.compiler.source>
         <maven.compiler.target>22</maven.compiler.target>
     </properties>
-
 
     <dependencies>
         <dependency>
@@ -19,3 +17,4 @@
             <version>4.4.0</version>
         </dependency>
     </dependencies>
+</project>

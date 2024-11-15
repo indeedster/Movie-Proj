@@ -9,7 +9,7 @@ public class Movie {
     private String genre;
     private Integer releaseYear;
 
-    public Movie(String title, String plot, Float rating, String genre, Integer releaseYear) {
+    public Movie(String title, String plot, String genre, Integer releaseYear) {
         this.title = title;
         this.plot = plot;
         this.genre = genre;
