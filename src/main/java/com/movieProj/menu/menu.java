@@ -65,21 +65,21 @@ public class Menu {
         }
     }
 
-    public void getMovieDetails() {
-        try (Scanner scanner = new Scanner(System.in)) {
-            System.out.println("Enter the name of the movie to search:");
-            String movieTitle = scanner.nextLine();
+    // public void getMovieDetails() {
+    //     try (Scanner scanner = new Scanner(System.in)) {
+    //         System.out.println("Enter the name of the movie to search:");
+    //         String movieTitle = scanner.nextLine();
 
-            Database movieDatabase = new Database("movieProj", "movieInfo");
-            Document movie = movieDatabase.findDocument("title", movieTitle);
+    //         Database movieDatabase = new Database("movieProj", "movieInfo");
+    //         Document movie = movieDatabase.findDocument("title", movieTitle);
 
-            if (movie != null) {
-                System.out.println("Movie found: " + movie.toJson());
-            } else {
-                System.out.println("Movie not found.");
-            }
-        }
-    }
+    //         if (movie != null) {
+    //             System.out.println("Movie found: " + movie.toJson());
+    //         } else {
+    //             System.out.println("Movie not found.");
+    //         }
+    //     }
+    // }
 
     public void runMenu() {
         Scanner scanner = new Scanner(System.in);
@@ -101,7 +101,8 @@ public class Menu {
                         addMovieToDatabase();
                         break;
                     case 2:
-                        getMovieDetails();
+                        // getMovieDetails();
+                        System.out.println("Under Repair");
                         break;
                     case 3:
                         System.out.println("Find similar movies functionality coming soon!");
