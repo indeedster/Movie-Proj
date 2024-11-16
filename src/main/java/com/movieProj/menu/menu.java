@@ -27,7 +27,8 @@ public class Menu {
                     String[] movieData = line.split(delimiter);
                     String movieTitle = movieData[0];
                     String moviePlot = movieData[1];
-                    
+                    String movieGenre = movieData[2];
+                    Integer movieReleaseYear = Integer.parseInt(movieData[3]);
 
                     Movie movieObject = new Movie(movieTitle, moviePlot, movieGenre, movieReleaseYear);
                     movieDatabase.addToDatabase(movieObject.getDocument());
@@ -49,12 +50,13 @@ public class Menu {
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.println("Enter the name of the movie:");
             String movieTitle = scanner.nextLine();
-            System.out.println("Enter the movie overview:");
+            System.out.println("Enter the movie plot:");
             String moviePlot = scanner.nextLine();
-            System.out.println("Enter the overall rating of the movie (out of 10):");
-            Float movieReleaseYear = Integer.parseInt(scanner.nextLine());
-
-            Movie userMovie = new Movie(movieTitle, moviePlot, movieReleaseYear);
+            System.out.println("Enter the movie genre:");
+            String movieGenre = scanner.nextLine();
+            System.out.println("Enter the release year");
+            Integer movieReleaseYear = Integer.parseInt(scanner.nextLine());
+            Movie userMovie = new Movie(movieTitle, moviePlot, movieGenre, movieReleaseYear);
             Database movieDatabase = new Database("movieProj", "movieInfo");
             movieDatabase.addToDatabase(userMovie.getDocument());
             System.out.println("Movie added successfully!");
@@ -66,7 +68,7 @@ public class Menu {
     public void getMovieDetails() {
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.println("Enter the name of the movie to search:");
-            String movieName = scanner.nextLine();
+            String movieTitle = scanner.nextLine();
 
             Database movieDatabase = new Database("movieProj", "movieInfo");
             Document movie = movieDatabase.findDocument("title", movieTitle);

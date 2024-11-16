@@ -25,7 +25,6 @@ public class Movie {
         return plot;
     }
 
-
     public String getGenre() {
         return genre;
     }
