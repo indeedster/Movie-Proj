@@ -15,7 +15,7 @@ public class Menu {
         Database movieDatabase = new Database("movieProj", "movieInfo");
         movieDatabase.createCollection();
 
-        String csvFile = "src/main/resources/moviesFile.csv";
+        String csvFile = "src/main/resources/editedMoviesFile.csv";
         String line;
         String delimiter = "#";
 
@@ -25,10 +25,10 @@ public class Menu {
             while ((line = br.readLine()) != null) {
                 try {
                     String[] movieData = line.split(delimiter);
-                    String movieTitle = movieData[0];
-                    String moviePlot = movieData[1];
-                    String movieGenre = movieData[2];
-                    Integer movieReleaseYear = Integer.parseInt(movieData[3]);
+                    String movieTitle = movieData[1];
+                    String moviePlot = movieData[7];
+                    String movieGenre = movieData[5];
+                    Integer movieReleaseYear = Integer.parseInt(movieData[0]);
 
                     Movie movieObject = new Movie(movieTitle, moviePlot, movieGenre, movieReleaseYear);
                     movieDatabase.addToDatabase(movieObject.getDocument());
