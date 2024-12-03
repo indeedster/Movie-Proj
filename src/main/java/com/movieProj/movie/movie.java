@@ -1,4 +1,4 @@
-package main.java.com.movieProj.database;
+package com.movieProj.movie;
 
 import org.bson.Document;
 
@@ -6,24 +6,24 @@ public class Movie {
 
     private String name;
     private String overview;
-    private Float rating;
     private String genre;
     private Integer releaseYear;
 
-    public Movie(String title, String plot, String genre, Integer releaseYear) {
-        this.title = title;
-        this.plot = plot;
+    public Movie(String name, String overview, String genre, Integer releaseYear) {
+        this.name = name;
+        this.overview = overview;
         this.genre = genre;
         this.releaseYear = releaseYear;
     }
 
-    // Getters
+
     public String getName() {
         return name;
     }
 
     public String getOverview() {
         return overview;
+
     }
 
     public String getGenre() {
@@ -39,7 +39,6 @@ public class Movie {
         Document document = new Document();
         document.append("name", name);
         document.append("overview", overview);
-        document.append("rating", rating);
         document.append("genre", genre);
         document.append("releaseYear", releaseYear);
         return document;
@@ -49,11 +48,10 @@ public class Movie {
     public static Movie fromDocument(Document document) {
         String name = document.getString("name");
         String overview = document.getString("overview");
-        Float rating = document.getDouble("rating").floatValue();
         String genre = document.getString("genre");
         Integer releaseYear = document.getInteger("releaseYear");
 
-        return new Movie(name, overview, rating, genre, releaseYear);
+        return new Movie(name, overview, genre, releaseYear);
     }
 
     @Override
@@ -61,7 +59,6 @@ public class Movie {
         return "Movie{" +
                "name='" + name + '\'' +
                ", overview='" + overview + '\'' +
-               ", rating=" + rating +
                ", genre='" + genre + '\'' +
                ", releaseYear=" + releaseYear +
                '}';

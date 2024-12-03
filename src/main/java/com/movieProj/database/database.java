@@ -1,4 +1,4 @@
-package main.java.com.movieProj.database;
+package com.movieProj.database;
 
 import org.bson.Document;
 
