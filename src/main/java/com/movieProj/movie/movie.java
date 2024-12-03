@@ -10,10 +10,9 @@ public class Movie {
     private String genre;
     private Integer releaseYear;
 
-    public Movie(String name, String overview, Float rating, String genre, Integer releaseYear) {
-        this.name = name;
-        this.overview = overview;
-        this.rating = rating;
+    public Movie(String title, String plot, String genre, Integer releaseYear) {
+        this.title = title;
+        this.plot = plot;
         this.genre = genre;
         this.releaseYear = releaseYear;
     }
@@ -25,10 +24,6 @@ public class Movie {
 
     public String getOverview() {
         return overview;
-    }
-
-    public Float getRating() {
-        return rating;
     }
 
     public String getGenre() {

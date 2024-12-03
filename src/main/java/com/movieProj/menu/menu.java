@@ -15,7 +15,7 @@ public class Menu {
         Database movieDatabase = new Database("movie_app_database", "movie_data");
         movieDatabase.createCollection();
 
-        String csvFile = "src/main/resources/moviesFile.csv";
+        String csvFile = "src/main/resources/editedMoviesFile.csv";
         String line;
         String delimiter = "#";
 
@@ -25,11 +25,12 @@ public class Menu {
             while ((line = br.readLine()) != null) {
                 try {
                     String[] movieData = line.split(delimiter);
-                    String originalTitle = movieData[1];
-                    String overview = movieData[0];
-                    Float rating = Float.parseFloat(movieData[movieData.length - 2]);
+                    String movieTitle = movieData[1];
+                    String moviePlot = movieData[7];
+                    String movieGenre = movieData[5];
+                    Integer movieReleaseYear = Integer.parseInt(movieData[0]);
 
-                    Movie movieObject = new Movie(originalTitle, overview, rating);
+                    Movie movieObject = new Movie(movieTitle, moviePlot, movieGenre, movieReleaseYear);
                     movieDatabase.addToDatabase(movieObject.getDocument());
                 } catch (Exception e) {
                     System.err.println("Error parsing line: " + line);
@@ -48,14 +49,15 @@ public class Menu {
     public void addMovieToDatabase() {
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.println("Enter the name of the movie:");
-            String movieName = scanner.nextLine();
-            System.out.println("Enter the movie overview:");
-            String movieOverview = scanner.nextLine();
-            System.out.println("Enter the overall rating of the movie (out of 10):");
-            Float movieRating = Float.parseFloat(scanner.nextLine());
-
-            Movie userMovie = new Movie(movieName, movieOverview, movieRating);
-            Database movieDatabase = new Database("movie_app_database", "movie_data");
+            String movieTitle = scanner.nextLine();
+            System.out.println("Enter the movie plot:");
+            String moviePlot = scanner.nextLine();
+            System.out.println("Enter the movie genre:");
+            String movieGenre = scanner.nextLine();
+            System.out.println("Enter the release year");
+            Integer movieReleaseYear = Integer.parseInt(scanner.nextLine());
+            Movie userMovie = new Movie(movieTitle, moviePlot, movieGenre, movieReleaseYear);
+            Database movieDatabase = new Database("movieProj", "movieInfo");
             movieDatabase.addToDatabase(userMovie.getDocument());
             System.out.println("Movie added successfully!");
         } catch (Exception e) {
@@ -63,21 +65,21 @@ public class Menu {
         }
     }
 
-    public void getMovieDetails() {
-        try (Scanner scanner = new Scanner(System.in)) {
-            System.out.println("Enter the name of the movie to search:");
-            String movieName = scanner.nextLine();
+    // public void getMovieDetails() {
+    //     try (Scanner scanner = new Scanner(System.in)) {
+    //         System.out.println("Enter the name of the movie to search:");
+    //         String movieTitle = scanner.nextLine();
 
-            Database movieDatabase = new Database("movie_app_database", "movie_data");
-            Document movie = movieDatabase.findDocument("title", movieName);
+    //         Database movieDatabase = new Database("movieProj", "movieInfo");
+    //         Document movie = movieDatabase.findDocument("title", movieTitle);
 
-            if (movie != null) {
-                System.out.println("Movie found: " + movie.toJson());
-            } else {
-                System.out.println("Movie not found.");
-            }
-        }
-    }
+    //         if (movie != null) {
+    //             System.out.println("Movie found: " + movie.toJson());
+    //         } else {
+    //             System.out.println("Movie not found.");
+    //         }
+    //     }
+    // }
 
     public void runMenu() {
         Scanner scanner = new Scanner(System.in);
@@ -99,7 +101,8 @@ public class Menu {
                         addMovieToDatabase();
                         break;
                     case 2:
-                        getMovieDetails();
+                        // getMovieDetails();
+                        System.out.println("Under Repair");
                         break;
                     case 3:
                         System.out.println("Find similar movies functionality coming soon!");
