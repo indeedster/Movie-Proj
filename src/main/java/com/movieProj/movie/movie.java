@@ -4,26 +4,25 @@ import org.bson.Document;
 
 public class Movie {
 
-    private String name;
-    private String overview;
+    private String title;
+    private String plot;
     private String genre;
     private Integer releaseYear;
 
-    public Movie(String name, String overview, String genre, Integer releaseYear) {
-        this.name = name;
-        this.overview = overview;
+    public Movie(String title, String plot, String genre, Integer releaseYear) {
+        this.title = title;
+        this.plot = plot;
         this.genre = genre;
         this.releaseYear = releaseYear;
     }
 
-
-    public String getName() {
-        return name;
+    // Getters
+    public String gettitle() {
+        return title;
     }
 
-    public String getOverview() {
-        return overview;
-
+    public String getplot() {
+        return plot;
     }
 
     public String getGenre() {
@@ -37,8 +36,8 @@ public class Movie {
    
     public Document getDocument() {
         Document document = new Document();
-        document.append("name", name);
-        document.append("overview", overview);
+        document.append("title", title);
+        document.append("plot", plot);
         document.append("genre", genre);
         document.append("releaseYear", releaseYear);
         return document;
@@ -46,19 +45,19 @@ public class Movie {
 
     
     public static Movie fromDocument(Document document) {
-        String name = document.getString("name");
-        String overview = document.getString("overview");
+        String title = document.getString("title");
+        String plot = document.getString("plot");
         String genre = document.getString("genre");
         Integer releaseYear = document.getInteger("releaseYear");
 
-        return new Movie(name, overview, genre, releaseYear);
+        return new Movie(title, plot, genre, releaseYear);
     }
 
     @Override
     public String toString() {
         return "Movie{" +
-               "name='" + name + '\'' +
-               ", overview='" + overview + '\'' +
+               "title='" + title + '\'' +
+               ", plot='" + plot + '\'' +
                ", genre='" + genre + '\'' +
                ", releaseYear=" + releaseYear +
                '}';

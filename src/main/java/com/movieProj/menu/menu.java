@@ -1,8 +1,8 @@
 package com.movieProj.menu;
 
 import org.bson.Document;
-import com.movieProj.database.database;
-import com.movieProj.movie.movie;
+import com.movieProj.database.Database;
+import com.movieProj.movie.Movie;
 
 import java.util.Scanner;
 import java.io.BufferedReader;
@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Menu {
 
     public void startUp() {
-        Database movieDatabase = new Database("movie_app_database", "movie_data");
+        Database movieDatabase = new Database("movieProj", "movieInfo");
         movieDatabase.createCollection();
 
         String csvFile = "src/main/resources/editedMoviesFile.csv";
@@ -25,12 +25,12 @@ public class Menu {
             while ((line = br.readLine()) != null) {
                 try {
                     String[] movieData = line.split(delimiter);
-                    String movieName = movieData[1];
-                    String movieOverview = movieData[7];
+                    String movieTitle = movieData[1];
+                    String moviePlot = movieData[7];
                     String movieGenre = movieData[5];
                     Integer movieReleaseYear = Integer.parseInt(movieData[0]);
 
-                    Movie movieObject = new Movie(movieName, movieOverview, movieGenre, movieReleaseYear);
+                    Movie movieObject = new Movie(movieTitle, moviePlot, movieGenre, movieReleaseYear);
                     movieDatabase.addToDatabase(movieObject.getDocument());
                 } catch (Exception e) {
                     System.err.println("Error parsing line: " + line);
@@ -42,7 +42,7 @@ public class Menu {
     }
 
     public void shutDown() {
-        Database movieDatabase = new Database("movie_app_database", "movie_data");
+        Database movieDatabase = new Database("movieProj", "movieInfo");
         movieDatabase.deleteCollection();
     }
 
@@ -56,7 +56,7 @@ public class Menu {
             String movieGenre = scanner.nextLine();
             System.out.println("Enter the release year");
             Integer movieReleaseYear = Integer.parseInt(scanner.nextLine());
-            Movie userMovie = new Movie(movieName, movieOverview, movieGenre, movieReleaseYear);
+            Movie userMovie = new Movie(movieTitle, moviePlot, movieGenre, movieReleaseYear);
             Database movieDatabase = new Database("movieProj", "movieInfo");
             movieDatabase.addToDatabase(userMovie.getDocument());
             System.out.println("Movie added successfully!");
@@ -71,7 +71,7 @@ public class Menu {
     //         String movieTitle = scanner.nextLine();
 
     //         Database movieDatabase = new Database("movieProj", "movieInfo");
-    //         Document movie = movieDatabase.fromDocument("title", movieTitle);
+    //         Document movie = movieDatabase.findDocument("title", movieTitle);
 
     //         if (movie != null) {
     //             System.out.println("Movie found: " + movie.toJson());
