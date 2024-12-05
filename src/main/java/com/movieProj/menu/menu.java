@@ -15,7 +15,7 @@ public class Menu {
         Database movieDatabase = new Database("movieProj", "movieInfo");
         movieDatabase.createCollection();
 
-        String csvFile = "src/main/resources/editedMoviesFile.csv";
+        String csvFile = "src/resources/editedMoviesFile.csv";
         String line;
         String delimiter = "#";
 
