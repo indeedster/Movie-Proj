@@ -3,6 +3,7 @@ package com.movieProj.database;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bson.BsonValue;
 import org.bson.Document;
 
 import com.mongodb.client.MongoClient;
@@ -85,6 +86,18 @@ public class Database {
             movieCollection.deleteMany(new Document());
         } catch (Exception e) {
             System.err.println("Error deleting documents: " + e.getMessage());
+        }
+    }
+
+    public Document getDocumentByID(BsonValue id) {
+
+        try (MongoClient mongoClient = MongoClients.create(connectionString)) {
+
+            MongoDatabase genericDatabase = mongoClient.getDatabase(this.databaseName);
+            MongoCollection<Document> genericCollection = genericDatabase.getCollection(this.collectionName);
+
+            return genericCollection.find(new Document("_id", id)).first();
+
         }
     }
 }

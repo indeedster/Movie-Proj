@@ -16,6 +16,12 @@ public class Movie {
         this.releaseYear = releaseYear;
     }
 
+    public Movie(Document document) {
+        this.title = document.getString("title");
+        this.plot = document.getString("plot");
+        this.genre = document.getString("genre");
+        this.releaseYear = document.getInteger("releaseYear");
+    }
     // Getters
     public String gettitle() {
         return title;
