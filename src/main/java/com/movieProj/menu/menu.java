@@ -25,17 +25,16 @@ public class Menu {
 
 
     public void startUp() {
-
-        Database movieDatabase = new Database("movieProj", "movieInfo");
+        this.movieDatabase = new Database("movieProj", "movieInfo");
         movieDatabase.createCollection();
-
-        String csvFile = "src/resources/editedMoviesFile.csv";
+    
+        String csvFile = "src/resources/easyMoviesFile.csv";
         String line;
         String delimiter = "#";
-
+    
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             br.readLine(); // Skip header line
-
+    
             while ((line = br.readLine()) != null) {
                 try {
                     String[] movieData = line.split(delimiter);
@@ -43,7 +42,7 @@ public class Menu {
                     String moviePlot = movieData[7];
                     String movieGenre = movieData[5];
                     Integer movieReleaseYear = Integer.parseInt(movieData[0]);
-
+    
                     Movie movieObject = new Movie(movieTitle, moviePlot, movieGenre, movieReleaseYear);
                     movieDatabase.addToDatabase(movieObject.getDocument());
                 } catch (Exception e) {
@@ -54,10 +53,15 @@ public class Menu {
             e.printStackTrace();
         }
     }
+    
 
     public void shutDown() {
-        movieDatabase.deleteCollection();
-        System.out.println("Database shutdown complete.");
+        if (this.movieDatabase != null) {
+            this.movieDatabase.deleteCollection();
+            System.out.println("Database shutdown complete.");
+        } else {
+            System.err.println("Database is not initialized.");
+        }
     }
 
     public void addMovieToDatabase(Scanner scanner) {
