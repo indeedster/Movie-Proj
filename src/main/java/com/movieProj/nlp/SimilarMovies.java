@@ -15,7 +15,7 @@ public class SimilarMovies {
     public SimilarMovies(Processor processor, TFIDF tfidf) {
         this.processor = processor;
         this.tfidf = tfidf;
-        movieDatabase = new Database("movie_app_database", "movie_data");
+        movieDatabase = new Database("movieProj", "movieInfo");
     }
 
     public ArrayList<Movie> recommendMovies(String movieOverview, int numRecommendations) {

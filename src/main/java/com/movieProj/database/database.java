@@ -6,11 +6,13 @@ import java.util.List;
 import org.bson.BsonValue;
 import org.bson.Document;
 
+import com.movieProj.movie.Movie;
+
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.movieProj.movie.Movie;
+
 
 public class Database {
 
@@ -27,27 +29,6 @@ public class Database {
         this.databaseName = dbName;
         this.collectionName = collectionName;
 
-    }
-   
-
-    public List<Movie> findMoviesByGenre(String genre) {
-        List<Movie> similarMovies = new ArrayList<>();
-        
-        try (MongoClient mongoClient = MongoClients.create()) {
-            MongoDatabase movieDb = mongoClient.getDatabase(databaseName);
-            MongoCollection<Document> movieCollection = movieDb.getCollection(collectionName);
-
-            for (Document doc : movieCollection.find()) {
-                Movie movie = Movie.fromDocument(doc);
-                if (movie.getGenre().toLowerCase().contains(genre.toLowerCase())) {
-                    similarMovies.add(movie);
-                }
-            }
-        } catch (Exception e) {
-            System.err.println("Error finding movies by genre: " + e.getMessage());
-        }
-
-        return similarMovies;
     }
 
 

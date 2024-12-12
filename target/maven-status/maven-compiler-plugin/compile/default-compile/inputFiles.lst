@@ -1,3 +1,6 @@
 /Users/indeedster/Desktop/COS_225/Movie-Proj/src/main/java/com/movieProj/database/Database.java
 /Users/indeedster/Desktop/COS_225/Movie-Proj/src/main/java/com/movieProj/menu/Menu.java
 /Users/indeedster/Desktop/COS_225/Movie-Proj/src/main/java/com/movieProj/movie/Movie.java
+/Users/indeedster/Desktop/COS_225/Movie-Proj/src/main/java/com/movieProj/nlp/Processor.java
+/Users/indeedster/Desktop/COS_225/Movie-Proj/src/main/java/com/movieProj/nlp/SimilarMovies.java
+/Users/indeedster/Desktop/COS_225/Movie-Proj/src/main/java/com/movieProj/nlp/TFIDF.java

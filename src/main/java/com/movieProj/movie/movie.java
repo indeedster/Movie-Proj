@@ -23,11 +23,11 @@ public class Movie {
         this.releaseYear = document.getInteger("releaseYear");
     }
     // Getters
-    public String gettitle() {
+    public String getTitle() {
         return title;
     }
 
-    public String getplot() {
+    public String getPlot() {
         return plot;
     }
 
