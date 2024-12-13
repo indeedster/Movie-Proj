@@ -30,6 +30,24 @@ public class Database {
         this.collectionName = collectionName;
 
     }
+    
+
+    public ArrayList<Document> getAllMovies() {
+        ArrayList<Document> movies = new ArrayList<>();
+        try (MongoClient mongoClient = MongoClients.create(connectionString)) {
+            MongoDatabase movieDatabase = mongoClient.getDatabase(this.databaseName);
+            MongoCollection<Document> movieCollection = movieDatabase.getCollection(this.collectionName);
+    
+            for (Document doc : movieCollection.find()) {
+                movies.add(doc);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return movies;
+    }
+    
+
 
 
     public void addToDatabase(Document document) {
@@ -71,14 +89,15 @@ public class Database {
     }
 
     public Document getDocumentByID(BsonValue id) {
-
         try (MongoClient mongoClient = MongoClients.create(connectionString)) {
-
             MongoDatabase genericDatabase = mongoClient.getDatabase(this.databaseName);
             MongoCollection<Document> genericCollection = genericDatabase.getCollection(this.collectionName);
-
+    
             return genericCollection.find(new Document("_id", id)).first();
-
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null; 
         }
     }
+    
 }

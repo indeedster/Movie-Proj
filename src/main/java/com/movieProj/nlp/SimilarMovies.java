@@ -35,5 +35,26 @@ public class SimilarMovies {
 
         return recommendedMovies;
     }
+    public ArrayList<Movie> recommendMoviesByGenre(ArrayList<Movie> filteredMovies, int numRecommendations) {
+        ArrayList<Movie> recommendedMovies = new ArrayList<>();
+        
+        for (Movie movie : filteredMovies) {
+            String[] words = processor.processText(movie.getPlot());  
+            HashMap<BsonValue, Float> movieScores = new HashMap<>();
+            
+            for (BsonValue id : tfidf.getIds()) {
+                float score = tfidf.calculateTFIDF(id, words);
+                movieScores.put(id, score);
+            }
+    
+            movieScores.entrySet().stream()
+                    .sorted((e1, e2) -> Float.compare(e2.getValue(), e1.getValue()))
+                    .limit(numRecommendations)
+                    .forEach(e -> recommendedMovies.add(new Movie(movieDatabase.getDocumentByID(e.getKey()))));
+    
+        }
+        return recommendedMovies;
+    }
+    
 
 }
