@@ -29,7 +29,7 @@ public class Menu {
         Database movieDatabase = new Database("movieProj", "movieInfo");
         movieDatabase.createCollection();
 
-        String csvFile = "src/resources/editedMoviesFile.csv";
+        String csvFile = "src/resources/easyMoviesFile.csv";
         String line;
         String delimiter = "#";
 
