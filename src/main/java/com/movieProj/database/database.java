@@ -31,7 +31,7 @@ public class Database {
 
     }
     
-
+//retrieves movies from MongoDB
     public ArrayList<Document> getAllMovies() {
         ArrayList<Document> movies = new ArrayList<>();
         try (MongoClient mongoClient = MongoClients.create(connectionString)) {
@@ -49,7 +49,7 @@ public class Database {
     
 
 
-
+//adds movies to MongoDB
     public void addToDatabase(Document document) {
         try (MongoClient mongoClient = MongoClients.create(connectionString)) {
             MongoDatabase movieDatabase = mongoClient.getDatabase(this.databaseName);
@@ -60,6 +60,7 @@ public class Database {
         }
     }
 
+    //creates the movies in MongoDB
     public void createCollection() {
         try (MongoClient mongoClient = MongoClients.create(connectionString)) {
             MongoDatabase movieDatabase = mongoClient.getDatabase(this.databaseName);
@@ -69,6 +70,7 @@ public class Database {
         }
     }
 
+    //deletes the movies in mongoDB as collection
     public void deleteCollection() {
         try (MongoClient mongoClient = MongoClients.create(connectionString)) {
             MongoDatabase movieDatabase = mongoClient.getDatabase(this.databaseName);
@@ -78,6 +80,7 @@ public class Database {
         }
     }
 
+    //deletes movies in mongoDB as individual documents
     public void deleteAllDocuments() {
         try (MongoClient mongoClient = MongoClients.create(connectionString)) {
             MongoDatabase movieDatabase = mongoClient.getDatabase(this.databaseName);
@@ -88,6 +91,7 @@ public class Database {
         }
     }
 
+    //finds specific document within databases
     public Document getDocumentByID(BsonValue id) {
         try (MongoClient mongoClient = MongoClients.create(connectionString)) {
             MongoDatabase genericDatabase = mongoClient.getDatabase(this.databaseName);

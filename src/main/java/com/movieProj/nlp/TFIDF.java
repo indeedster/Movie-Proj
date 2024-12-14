@@ -16,6 +16,7 @@ public class TFIDF {
         this.processor = processor;
     }
 
+    //total word count calculation
     public void addSample(BsonValue id, String text) {
         String[] words = processor.processText(text);
         HashMap<String, Integer> wordCount = new HashMap<>();
@@ -26,6 +27,7 @@ public class TFIDF {
         tf.put(id, wordCount);
     }
 
+    //individual frequency within document calculation
     public void calculateIDF() {
         for (String word : vocabulary) {
             int count = 0;
@@ -38,6 +40,7 @@ public class TFIDF {
         }
     }
 
+    //total frequency vs individual frequency (TFIDF) calculations
     public float calculateTFIDF(BsonValue id, String word) {
         if (!tf.containsKey(id)) {
             return 0;

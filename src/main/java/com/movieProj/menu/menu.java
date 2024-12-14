@@ -25,7 +25,7 @@ public class Menu {
     
         private Database movieDatabase;
     
-    
+        //uploads entrys to new collection, prints menu
         public void startUp() {
     
             movieDatabase = new Database("movieProj", "movieInfo");
@@ -65,7 +65,8 @@ public class Menu {
                 System.out.println("No database to shut down.");
             }
         }
-    
+    //adds movie to database
+   
         public void addMovieToDatabase(Scanner scanner) {
             try {
                 System.out.println("Enter the name of the movie:");
@@ -92,7 +93,7 @@ public class Menu {
             int releaseYear = doc.getInteger("releaseYear");
             return new Movie(title, plot, genre, releaseYear);
         }
-        
+   
     
         public void findSimilarMovies(Scanner scanner) {
                 System.out.println("Please enter overview of the movie");

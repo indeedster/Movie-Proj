@@ -39,7 +39,7 @@ public class Movie {
         return releaseYear;
     }
 
-   
+   //gets whole movie entry
     public Document getDocument() {
         Document document = new Document();
         document.append("title", title);
@@ -49,7 +49,7 @@ public class Movie {
         return document;
     }
 
-    
+    //creates new movie
     public static Movie fromDocument(Document document) {
         String title = document.getString("title");
         String plot = document.getString("plot");

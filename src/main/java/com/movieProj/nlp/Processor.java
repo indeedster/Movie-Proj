@@ -15,6 +15,7 @@ public class Processor {
         loadStopWords(stopWordsFilePath);
     }
 
+    //organizes/processes stopwords file
     private void loadStopWords(String stopWordsFilePath) {
         try (BufferedReader br = new BufferedReader(new FileReader(stopWordsFilePath))) {
             String line;
@@ -38,11 +39,7 @@ public class Processor {
         return text.split("\\s+");
     }
 
-    /**
-     * Removes words that are present in listOfStopWords from the arrayOfText
-     * @param arrayOfText - Array of words after they do not have any punctuation
-     * @return arrayOfText - Array of words that do not contain any stop words
-     */
+    //removes stopwords from text
     public String[] removeStopWords(String[] arrayOfText) {
         Set<String> words = new HashSet<>();
         for (String word : arrayOfText) {
@@ -53,6 +50,7 @@ public class Processor {
         return words.toArray(new String[0]);
     }
 
+    //returns words that are not stopwords for similarity search
     public String[] processText(String text) {
         text = lowerAllCases(text);
         text = removePunctuation(text);
