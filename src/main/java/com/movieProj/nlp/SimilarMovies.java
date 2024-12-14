@@ -44,17 +44,21 @@ public class SimilarMovies {
             
             for (BsonValue id : tfidf.getIds()) {
                 float score = tfidf.calculateTFIDF(id, words);
+                System.out.println("Movie ID: " + id + " Score: " + score);  
                 movieScores.put(id, score);
             }
     
             movieScores.entrySet().stream()
-                    .sorted((e1, e2) -> Float.compare(e2.getValue(), e1.getValue()))
-                    .limit(numRecommendations)
-                    .forEach(e -> recommendedMovies.add(new Movie(movieDatabase.getDocumentByID(e.getKey()))));
-    
+                .sorted((e1, e2) -> Float.compare(e2.getValue(), e1.getValue()))
+                .limit(numRecommendations)
+                .forEach(e -> {
+                    System.out.println("Movie ID: " + e.getKey() + " Score: " + e.getValue());  
+                    recommendedMovies.add(new Movie(movieDatabase.getDocumentByID(e.getKey())));
+                });
         }
         return recommendedMovies;
     }
+    
     
 
 }
